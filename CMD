@@ -1,0 +1,1 @@
+pm2 start server.js --name memoNodeWmp --output /root/data/memoNodeWmp/logs.log --error /root/data/memoNodeWmp/errors.log
