@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const http = require("axios");
+const folderUrl = path.resolve(__dirname, "../json");
 const fileUrl = path.resolve(__dirname, "../json/token.json");
 const MPAPPID = process.env.MPAPPID; // 测试号的 APPID
 const MPAPPSECRET = process.env.MPAPPSECRET; // 测试号的 APPSECRET
@@ -11,8 +12,9 @@ function setToken() {
     return new Promise(async (resolve, reject) => {
         try {
             const res = await http.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${MPAPPID}&secret=${MPAPPSECRET}`);
-
+            console.log(res.data)
             INTERTIME = (res.data.expires_in - 60) * 1000;
+            fs.mkdirSync(folderUrl);
             fs.writeFile(
                 fileUrl,
                 JSON.stringify({
@@ -27,7 +29,6 @@ function setToken() {
             reject(error);
         }
     })
-
 }
 
 

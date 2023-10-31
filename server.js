@@ -1,15 +1,10 @@
 require("dotenv").config();
 const axios = require("axios");
-const fs = require('fs');
-const path = require('path');
 const express = require("express");
-const mongoose = require("mongoose");
-const { User, Ticket, Notice } = require("./model/main");
 const date = require("silly-datetime");
 const http = require('http')
-const xmlparser = require('express-xml-bodyparser'); // 解析 xml
 
-const { setToken, timingSetToken, getToken, getMpToken } = require("./utils/tokenConfig"); // token工具包
+const { setToken, timingSetToken, getMpToken } = require("./utils/tokenConfig"); // token工具包
 // 项目启动后自动执行获取token的方法
 setToken().then(() => {
     // token 获取成功后开始定时刷新token操作
